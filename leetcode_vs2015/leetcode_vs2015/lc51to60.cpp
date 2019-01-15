@@ -1,5 +1,7 @@
 #include<vector>
 #include<algorithm>
+#include<string>
+
 using namespace std;
 struct Interval {
 	int start;
@@ -316,6 +318,49 @@ if (nums[i] > max_sum) {
 		}
 		return temp;
 	}
+	int fac(int n) {
+		if (n == 0) {
+			return 1;
+		}
+		int res = 1;
+		for (int i = 1; i <= n; i++) {
+			res *= i;
+		}
+		return res;
+	}
+	string getPermutation(int n, int k) {
+		/*对每层来说分层点为fac(n-1)，分为n层
+		该数除以fac(n-1)并向下取整，可以得到第一位的index
+		ex:n=4 k=9 permutation=2314   
+		fac(n-1)=fac(3)=6
+		a[]={1,2,3,4}
+		target=k-1=8
+		8/6=1 --> a[1]=2（第一位）;
+		a[]={1,3,4}
+		8%6=2 
+		fac(2)=2
+		2/2=1  --> a[1]=3（第二位)
+		a[]={1,4}
+		2%2=0 
+		fac(1)=1
+		*/
+		int target = k - 1;
+		vector<int>temp(n, 0);
+		int i, index, rest;
+		int facn = n - 1;
+		string result = "";
+		for (i = 0; i < n; i++) {
+			temp[i] = i + 1;
+		}//赋值temp为1~n
+		while (facn>=0) {
+			index = target / fac(facn);
+			result += to_string(temp[index]);
+			temp.erase(temp.begin() + index);
+			target = target%fac(facn);
+			facn--;
+		}
+		return result;
+	}
 };
 
 int main() {
@@ -328,9 +373,10 @@ int main() {
 	vector<Interval> solu56;
 	vector<vector<int>> d2vec;
 	vector<Interval> vecinte;
+	string solution60;
 	bool solution55;
 	int solu58;
-	int test = 54;
+	int test = 60;
 	switch (test)
 	{
 	case 54:
@@ -351,6 +397,9 @@ int main() {
 		break;
 	case 58:
 		solu58 = solu.lengthOfLastWord("a ");
+		break;
+	case 60:
+		solution60 = solu.getPermutation(3, 3);
 		break;
 	default:
 		break;

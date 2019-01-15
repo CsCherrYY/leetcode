@@ -1,8 +1,9 @@
 ﻿  lc51to60.cpp
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc51to60.cpp(18): warning C4101: “j”: 未引用的局部变量
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc51to60.cpp(41): warning C4101: “j”: 未引用的局部变量
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc51to60.cpp(98): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc51to60.cpp(108): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc51to60.cpp(157): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc51to60.cpp(20): warning C4101: “j”: 未引用的局部变量
+c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc51to60.cpp(43): warning C4101: “j”: 未引用的局部变量
+c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc51to60.cpp(100): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc51to60.cpp(110): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc51to60.cpp(159): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc51to60.cpp(349): warning C4101: “rest”: 未引用的局部变量
   leetcode_vs2015.vcxproj -> C:\Users\CS\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.exe
   leetcode_vs2015.vcxproj -> C:\Users\CS\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.pdb (Full PDB)
