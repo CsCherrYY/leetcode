@@ -110,9 +110,6 @@ public:
 		}
 		return dp[m - 1][n - 1];
 	}
-	bool isNumber(string s) {
-
-	}
 };
 int main() {
 	int test = 61;
