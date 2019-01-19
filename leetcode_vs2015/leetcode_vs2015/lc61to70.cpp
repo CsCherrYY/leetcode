@@ -110,16 +110,113 @@ public:
 		}
 		return dp[m - 1][n - 1];
 	}
+	vector<int> plusOne(vector<int>& digits) {
+		int size = digits.size();
+		if (size == 0) {
+			return digits;
+		}
+		int sign = 0;  //全进位
+		int i;
+		for (i = 0; i < size; i++) {
+			if (digits[i] != 9) {
+				sign = 1;
+			}
+		}
+		if (sign == 0) {
+			vector<int> temp(size + 1, 0);
+			temp[0] = 1;
+			return temp;
+		}
+		for (i = size - 1; i >= 0; i--) {
+			if (digits[i] < 9) {
+				digits[i] += 1;
+				break;
+			}
+			else {
+				digits[i] = 0;
+			}
+		}
+		return digits;
+	}
+	string addBinary(string a, string b) {
+		int len_a = a.length();
+		int len_b = b.length();
+		if (!len_a) {
+			return b;
+		}
+		else if (!len_b) {
+			return a;
+		}
+		if (len_a > len_b) {
+			return addBinary(b, a); //保证a短
+		}
+		int i;
+		int diff = len_b - len_a;
+		int add = 0;
+		string temp = b;
+		for (i = len_a - 1; i >= 0; i--) {
+			temp[i + diff] += (a[i] - '0');
+		}
+		for (i = len_b - 1; i >= 0; i--) {
+			temp[i] += add;
+			add = 0;
+			if (temp[i] >= '2') {
+				temp[i] = temp[i] - 2;
+				add = 1;
+			}
+		}
+		if (add) {
+			temp.insert(0, "1");
+		}
+		return temp;
+	}
+	int mySqrt(int x) {  //x>=1
+		if (x == 1 || x == 2 || x == 3) {
+			return 1;
+		}
+		long long i = x;
+		long long low = 1;
+		long long high = x;
+		long long temp, tempplus1;   //low和high也要用longlong
+		while (1) {
+			temp = i * i;
+			tempplus1 = (i + 1)*(i + 1);
+			if (temp <= x && tempplus1 > x) {
+				return i;
+			}
+			else if (temp > x) {
+				high = i + 1;
+			}
+			else if (tempplus1 <= x) {
+				low = i;
+			}
+			i = (low + high) / 2;
+		}
+	}
+	int climbStairs(int n) {
+		vector<int>dp(n, 0);
+		dp[0] = 1;  //1->1
+		dp[1] = 2;  //2->2;
+		int i;
+		for (i = 2; i < n; i++) {
+			dp[i] = dp[i - 1] + dp[i - 2];
+		}
+		return dp[n - 1];
+	}
 };
 int main() {
-	int test = 61;
+	int test = 69;
 	Solution solu;
 	ListNode node1(1);
 	ListNode *solu61;
+	int solu69;
 	switch (test)
 	{
 	case 61:
 		solu61 = solu.rotateRight(&node1,1);
+		break;
+	case 69:
+		solu69 = solu.mySqrt(2147395599);
 		break;
 	default:
 		break;
