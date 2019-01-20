@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lc61to70.cpp" />
     <ClCompile Include="lc71to80.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

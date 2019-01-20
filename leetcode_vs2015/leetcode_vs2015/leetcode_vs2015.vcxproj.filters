@@ -18,8 +18,5 @@
     <ClCompile Include="lc71to80.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="lc61to70.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>
