@@ -220,8 +220,8 @@ public:
 		}
 		int i;
 		int tempint;
-		//vector<int> numsnew = nums;
-		for (i = 0; i < nums.size(); i++) {
+		//int size0 = nums.size();
+		for (i = 0; i < nums.size(); ) {  //erase了以后size减小了
 			tempint = nums[i];
 			result.push_back(tempint);
 			nums.erase(nums.begin() + i);
@@ -230,10 +230,104 @@ public:
 			result.pop_back();
 		}
 	}
+	vector<vector<int>> subsets(vector<int>& nums) {
+		vector<vector<int>> temp;
+		if (nums.size() == 0) {
+			return temp;
+		}
+		vector<int> result;
+		subsetcs(nums, nums.size(), temp, result);
+		return temp;
+		//对每个元素都可以选存在或不存在
+	}
+	void subsetcs(vector<int> nums, int k,vector<vector<int>>& temp,vector<int> result) {
+		if (k == 0) {
+			temp.push_back(result);
+			return;
+		}
+		int i;
+		int tempint;
+		vector<int> result1 = result;
+		for (i = 0; i < nums.size();) {
+			tempint = nums[i];
+			result.push_back(tempint);
+			//result1不push
+			nums.erase(nums.begin() + i);
+			subsetcs(nums, k - 1, temp, result);  //递归回溯
+			subsetcs(nums, k - 1, temp, result1);
+			result.pop_back();
+		}
+	}
+	bool exist(vector<vector<char>>& board, string word) {
+		if (board.size() == 0) {
+			return false;
+		}
+		if (board[0].size() == 0) {
+			return false;
+		}
+		if (word.length() == 0) {
+			return false;
+		}
+		int line = board.size();
+		int arrays = board[0].size();
+		int i, j;
+		for (i = 0; i < line; i++) {
+			for (j = 0; j < arrays; j++) {
+				if (judge(board, i, j, word, 0)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	bool judge(vector<vector<char>>& board, int x, int y,string word,int size) {
+		if (size == word.length()) {
+			return true;
+		}
+		if (x<0 || x>board.size() - 1) {
+			return false;
+		}
+		if (y<0 || y>board[0].size() - 1) {
+			return false;
+		}
+		if (board[x][y] != word[size]) {
+			return false;
+		}
+		char temp;
+		temp = board[x][y];
+		board[x][y] = 0;
+		if (judge(board, x + 1, y, word, size + 1) ||
+			judge(board, x - 1, y, word, size + 1) ||
+			judge(board, x, y + 1, word, size + 1) ||
+			judge(board, x, y - 1, word, size + 1)) {
+			return true;   //左右探测
+		}
+		board[x][y] = temp;  //回溯
+		return false;
+	}
+	int removeDuplicates(vector<int>& nums) {
+		int size = nums.size();
+		if (size <= 2) {
+			return size;  //不用改了
+		}
+		int i, j, k;
+		for (i = 0; i < nums.size() - 2;) {
+			j = i + 1;
+			k = i + 2;
+			if (nums[i] == nums[j] && nums[j] == nums[k]) {
+				nums.erase(nums.begin() + k);
+			}
+			else {
+				i++;
+			}
+		}
+		return nums.size();
+	}
 };
 int main() {
-	int test = 76;
+	int test = 77;
 	Solution solu;
+	vector<vector<int>> solu77;
 	string solu71, solu76;
 	vector<vector<int>> int2d;
 	vector<int>int1d;
@@ -256,6 +350,9 @@ int main() {
 		break;
 	case 76:
 		solu76 = solu.minWindow("acbdbaab","aabd");
+		break;
+	case 77:
+		solu77 = solu.combine(4, 2);
 		break;
 	default:
 		break;
