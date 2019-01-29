@@ -1,4 +1,9 @@
-﻿  lc81to90.cpp
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc81to90.cpp(82): warning C4101: “solu81”: 未引用的局部变量
+﻿  lc91to100.cpp
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc91to100.cpp(37): warning C4101: “i”: 未引用的局部变量
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc91to100.cpp(111): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc91to100.cpp(112): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc91to100.cpp(186): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc91to100.cpp(217): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc91to100.cpp(216): warning C4101: “tempint”: 未引用的局部变量
   leetcode_vs2015.vcxproj -> C:\Users\12225\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.exe
   leetcode_vs2015.vcxproj -> C:\Users\12225\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.pdb (Full PDB)
