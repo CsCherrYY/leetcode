@@ -1,4 +1,5 @@
 #include<vector>
+#include<map>
 #include<algorithm>
 using namespace std;
 class Solution {
@@ -58,8 +59,32 @@ public:
 		}
 		return numb;
 	}
-	int singleNumber(vector<int>& nums) {
-
+	bool wordBreak(string s, vector<string>& wordDict) {
+		map<string, bool>dptable;
+		return wordBreakdp(s, wordDict, dptable);
+    }
+	bool wordBreakdp(string s, vector<string>& wordDict, map<string, bool>&dptable) {
+		if (s.length() == 0) {
+			return true;
+		}
+		auto temp = dptable.find(s);
+		if (temp != dptable.end()) {
+			return temp->second;
+		}
+		bool result = false;
+		int i, word_len;
+		string tempstr;
+		for (i = 0; i < wordDict.size(); i++) {
+			word_len = wordDict[i].length();
+			if (s.length() >= word_len) {
+				tempstr = s.substr(0, word_len);
+				if (tempstr == wordDict[i]) {
+					result |= wordBreakdp(s.substr(word_len, s.length() - word_len), wordDict, dptable);
+				}
+			}
+		}
+		dptable.insert(pair<string, bool>(s, result));
+		return result;
 	}
 };
 int main() {
