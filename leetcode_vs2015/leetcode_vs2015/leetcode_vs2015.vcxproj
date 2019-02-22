@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lc141to150.cpp" />
+    <ClCompile Include="lc151to160.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{1FFAE1DC-D3A9-44A6-A49E-B076F08A453E}</ProjectGuid>
