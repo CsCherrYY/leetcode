@@ -1,3 +1,5 @@
-﻿  lc141to150.cpp
-  leetcode_vs2015.vcxproj -> C:\Users\CS\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.exe
-  leetcode_vs2015.vcxproj -> C:\Users\CS\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.pdb (Full PDB)
+﻿  lc151to160.cpp
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc151to160.cpp(20): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc151to160.cpp(24): warning C4018: “<”: 有符号/无符号不匹配
+  leetcode_vs2015.vcxproj -> C:\Users\12225\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.exe
+  leetcode_vs2015.vcxproj -> C:\Users\12225\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.pdb (Full PDB)
