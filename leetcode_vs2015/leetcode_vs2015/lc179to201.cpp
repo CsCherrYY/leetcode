@@ -3,6 +3,12 @@
 #include<algorithm>
 #include<string>
 using namespace std;
+struct TreeNode {
+	int val;
+	TreeNode *left;
+	TreeNode *right;
+	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
 class Solution {
 public:
 	bool largeequal(int a, int b) {
@@ -255,6 +261,37 @@ public:
 		int res = max(temp1, temp2);
 		dp198.insert(pair<int, int>(left, res));
 		return res;
+	}
+	vector<int> rightSideView(TreeNode* root) {
+		//二叉树的右视图->层次遍历
+		int next = 0;
+		int number = 1;
+		vector<TreeNode*>queues;
+		vector<int>result;
+		if (!root) {
+			return result;
+		}
+		queues.push_back(root);
+		TreeNode*work = root;
+		while (!queues.empty()) {
+			work = queues[0];
+			if (work->left) {
+				++next;
+				queues.push_back(work->left);
+			}
+			if (work->right) {
+				++next;
+				queues.push_back(work->right);
+			}
+			--number;
+			if (number == 0) {
+				result.push_back(work->val);
+				number = next;
+				next = 0;
+			}
+			queues.erase(queues.begin());
+		}
+		return result;
 	}
 };
 int main() {
