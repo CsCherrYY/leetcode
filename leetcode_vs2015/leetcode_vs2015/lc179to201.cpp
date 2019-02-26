@@ -1,4 +1,5 @@
 #include<vector>
+#include<map>
 #include<algorithm>
 #include<string>
 using namespace std;
@@ -136,6 +137,123 @@ public:
 				return res;
 			}
 		}
+		return res;
+	}
+	vector<string> findRepeatedDnaSequences(string s) {
+		vector<string>result;
+		map<string, int> table;
+		if (s.length() < 10) {
+			return result;
+		}
+		int i;
+		string temp;
+		for (i = 0; i <= s.length() - 10; ++i) {
+			temp = s.substr(i, 10);
+			auto s = table.find(temp);
+			if (s == table.end()) {
+				table.insert(pair<string, int>(temp, 1));
+			}
+			else {
+				table[temp]++;
+			}
+		}
+		map<string, int>::iterator k;
+		for (auto t : table) {
+			if (t.second > 1) {
+				result.push_back(t.first);
+			}
+		}
+		return result;
+	}
+	void rotate(vector<int>& nums, int k) {
+		//方法1：右移1步k次
+		//方法2：数组分成两部分,分别rotate在rotate，这种最快
+		if (nums.size() <= 1) {
+			return;
+		}
+		if (nums.size() < k) {
+			k %= nums.size();
+		}
+		int method = 2;
+		switch (method)
+		{
+		case 1:
+			for (int i = 0; i < k; i++) {
+				rotateone(nums);
+			}
+			break;
+		case 2:
+			reversecs(nums, 0, nums.size() - k - 1);
+			reversecs(nums, nums.size() - k, nums.size() - 1);
+			reversecs(nums, 0, nums.size() - 1);
+			break;
+		default:
+			break;
+		}
+		return;
+	}
+	void reversecs(vector<int>& nums, int left, int right) {
+		reverse(nums.begin() + left, nums.begin() + right + 1);
+		return;
+	}
+	void rotateone(vector<int>& nums) {
+		if (nums.size() <= 1) {
+			return;
+		}
+		int temp = nums[nums.size() - 1];
+		nums.pop_back();
+		nums.insert(nums.begin(), temp);
+		return;
+	}
+	uint32_t reverseBits(uint32_t n) {
+		uint32_t temp = 0;
+		for (int i = 0; i < 32; ++i) {
+			temp += n & 1;          //n%2  ===== n&1
+			n = n >> 1;
+			temp = temp << 1;
+		}
+		return temp;
+	}
+	int hammingWeight(uint32_t n) {
+		int ans = 0;
+		while (n)
+		{
+			ans += n % 2;
+			n >>= 1;
+		}
+		return ans;
+	}
+	map<int, int>dp198;
+	int rob(vector<int>& nums) {
+		/*如果1 2都不取 那么肯定小于1取2不取
+		所以两种情况，1取，或者2取
+		*/
+		if (!nums.size()) {
+			return 0;
+		}
+		if (nums.size() == 1) {
+			return nums[0];
+		}
+		if (nums.size() == 2) {
+			return max(nums[0], nums[1]);
+		}
+		return robdp(nums, 0);
+	}
+	int robdp(vector<int>& nums, int left) {
+		auto s = dp198.find(left);  //dp存储格式：pair<int1,int2> int1:left int2:maxvalue
+		if (s != dp198.end()) {
+			return s->second;
+		}
+		if (left >= nums.size()) {
+			return 0;
+		}
+		if (left == nums.size() - 1) {
+			return nums[nums.size() - 1]; //只能取这个了
+		}
+		int temp1 = nums[left] + robdp(nums, left + 2);   //取了1
+		int temp2 = nums[left + 1] + robdp(nums, left + 3); //取了2
+		int res = max(temp1, temp2);
+		dp198.insert(pair<int, int>(left, res));
 		return res;
 	}
 };
