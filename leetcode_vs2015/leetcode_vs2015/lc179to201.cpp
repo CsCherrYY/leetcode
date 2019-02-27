@@ -293,17 +293,75 @@ public:
 		}
 		return result;
 	}
+	int numIslands(vector<vector<char>>& grid) {
+		//BFS for graph
+		int size_h = grid.size();
+		if (!size_h) {
+			return 0;
+		}
+		int size_w = grid[0].size();
+		if (!size_w) {
+			return 0;
+		}
+		int island = 0;
+		vector<vector<bool>> tf(size_h, vector<bool>(size_w, false));
+		for (int i = 0; i < size_h; ++i) {
+			for (int j = 0; j < size_w; ++j) {
+				if (tf[i][j] == false&&grid[i][j]=='1') {
+					travel(grid, tf, i, j);
+					island++;
+				}
+			}
+		}
+		return island;
+	}
+	void travel(vector<vector<char>>& grid, vector<vector<bool>>& tf, int i, int j) {
+		int size_h = grid.size();
+		int size_w = grid[0].size();
+		if (i < 0 || i >= size_h) {
+			return;
+		}
+		if (j < 0 || j >= size_w) {
+			return;
+		}
+		if (tf[i][j] == true || grid[i][j] == '0') {
+			return;
+		}
+		tf[i][j] = true;
+		travel(grid, tf, i - 1, j);
+		travel(grid, tf, i + 1, j);
+		travel(grid, tf, i, j - 1);
+		travel(grid, tf, i, j + 1);
+		return;
+	}
+	int rangeBitwiseAnd(int m, int n) {
+		//k为偶数的时候 k&k+1=k ---> 只要m不等于n 最后一位等于0 继续递归下一位
+		if (!m) {
+			return 0;
+		}
+		if (m != n) {
+			return rangeBitwiseAnd(m >> 1, n >> 1) << 1;
+		}
+		else {
+			return (rangeBitwiseAnd(m >> 1, n >> 1) << 1) + m % 2;
+		}
+	}
 };
 int main() {
 	Solution solu;
 	vector<int>test155 = { 824,938,1399,5607,6973,5703,9609,4398,8247 };
-	int test = 155;
+	int test201;
+	int test = 201;
 	switch (test)
 	{
 	case 155:
 		solu.fastsort(test155);
 		break;
+	case 201:
+		test201 = solu.rangeBitwiseAnd(5, 7);
+		break;
 	default:
 		break;
 	}
+	int i = 1;
 }
