@@ -1,7 +1,2 @@
-﻿  lc179to201.cpp
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc179to201.cpp(140): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc179to201.cpp(156): warning C4018: “<=”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc179to201.cpp(180): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc179to201.cpp(253): warning C4018: “>=”: 有符号/无符号不匹配
-  leetcode_vs2015.vcxproj -> C:\Users\CS\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.exe
+﻿  leetcode_vs2015.vcxproj -> C:\Users\CS\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.exe
   leetcode_vs2015.vcxproj -> C:\Users\CS\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.pdb (Full PDB)
