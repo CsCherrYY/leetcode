@@ -1,4 +1,10 @@
 ﻿  lcfrom227.cpp
 c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom227.cpp(17): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom227.cpp(15): warning C4101: “num_left”: 未引用的局部变量
+c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom227.cpp(55): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom227.cpp(92): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom227.cpp(114): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom227.cpp(122): warning C4018: “>”: 有符号/无符号不匹配
+c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom227.cpp(125): warning C4018: “>”: 有符号/无符号不匹配
   leetcode_vs2015.vcxproj -> C:\Users\CS\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.exe
   leetcode_vs2015.vcxproj -> C:\Users\CS\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.pdb (Full PDB)
