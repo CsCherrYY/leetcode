@@ -1,11 +1,7 @@
-﻿  lcfrom227.cpp
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom227.cpp(68): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom227.cpp(66): warning C4101: “num_left”: 未引用的局部变量
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom227.cpp(106): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom227.cpp(143): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom227.cpp(165): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom227.cpp(173): warning C4018: “>”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom227.cpp(176): warning C4018: “>”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom227.cpp(333): warning C4018: “<”: 有符号/无符号不匹配
+﻿  lcfrom263.cpp
+c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom263.cpp(65): warning C4244: “return”: 从“__int64”转换到“int”，可能丢失数据
+c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom263.cpp(74): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom263.cpp(88): warning C4018: “>”: 有符号/无符号不匹配
+c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom263.cpp(138): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
   leetcode_vs2015.vcxproj -> C:\Users\CS\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.exe
   leetcode_vs2015.vcxproj -> C:\Users\CS\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.pdb (Full PDB)

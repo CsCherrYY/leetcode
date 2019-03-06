@@ -2,7 +2,9 @@
 #include<set>
 #include<vector>
 #include<algorithm>
+#include<map>
 using namespace std;
+bool isBadVersion(int version);
 class Solution {
 public:
 	bool isUgly(int num) {
@@ -94,7 +96,130 @@ public:
 		}
 		return h;
 	}
+	int firstBadVersion(int n) {
+		int left = 1;
+		int right = n;
+		int mid;
+		while (left < right) {
+			mid = (left + right) / 2;
+			if (mid == n) {
+				return mid;
+			}
+			else if (isBadVersion(mid) == true && isBadVersion(mid + 1) == false) {
+				return mid + 1;
+			}
+			else if (isBadVersion(mid) == true) {
+				left = mid + 1;
+			}
+			else if (isBadVersion(mid) == false) {
+				right = mid - 1;
+			}
+		}
+		return left;
+	}
+	int numSquares(int n) {
+		map<int, int>dpsqrt;
+		return numSquaresdp(n, dpsqrt);
+	}
+	int numSquaresdp(int n, map<int, int>&dpsqrt) {
+		if (!n) {
+			return 0;
+		}
+		else if (n == 1) {
+			return 1;
+		}
+		auto it = dpsqrt.find(n);
+		if (it != dpsqrt.end()) {
+			return it->second;
+		}
+		int max = int(sqrt(n));
+		int count = n;
+		for (int i = max; i >= 1; --i) {
+			count = min(count, 1 + numSquaresdp(n - pow(i, 2), dpsqrt));
+		}
+		dpsqrt.insert(pair<int, int>(n, count));
+		return count;
+	}
+	void moveZeroes(vector<int>& nums) {
+		int end = nums.size() - 1;
+		int zero_pos = end;
+		int i;
+		while (zero_pos>=0) {
+			while (zero_pos >= 0 && nums[zero_pos] ) {
+				--zero_pos;
+			}
+			if (zero_pos < 0) {
+				break;
+			}
+			for (i = zero_pos; i < end; ++i) {
+				nums[i] = nums[i + 1];
+			}
+			nums[end] = 0;
+			--zero_pos;
+			--end;
+		}
+		return;
+	}
+	int findDuplicate(vector<int>& nums) {
+		int fast = 0, slow = 0;
+		while (1) {
+			fast = nums[nums[fast]];
+			slow = nums[slow];
+			if (fast == slow) {
+				fast = 0;
+				while (fast != slow) {
+					fast = nums[fast];
+					slow = nums[slow];
+				}
+				return nums[slow];
+			}
+		}
+	}
+	bool wordPattern(string pattern, string str) {
+		map<char, string> maps;
+		set<string>val;
+		string temp = str;
+		int spacepos = 0;
+		string word;
+		int charpos = 0;
+		while (1) {
+			if (charpos == pattern.size()) {
+				if (spacepos == -1) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			spacepos = temp.find(' ');
+			if (spacepos == -1) {
+				word = temp;
+			}
+			else {
+				word = temp.substr(0, spacepos);
+				temp = temp.substr(spacepos + 1);
+			}
+			auto it = maps.find(pattern[charpos]);
+			if (it==maps.end()) {
+				maps.insert(pair<char, string>(pattern[charpos], word));
+				if (val.find(word) != val.end()) {
+					return false;
+				}
+				val.insert(word);
+				++charpos;
+			}
+			else if (it->second != word) {
+				return false;
+			}
+			else {
+				++charpos;
+			}
+		}
+		return true;
+	}
 };
 int main() {
+	Solution solu;
+	bool a = solu.wordPattern("abba", "dog dog dog dog");
 	return 0;
 }
