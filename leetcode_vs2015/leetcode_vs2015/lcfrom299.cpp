@@ -79,11 +79,115 @@ public:
 		dp309.insert(pair<int, int>(left, maxprofit));
 		return maxprofit;
 	}
+	vector<int> findMinHeightTrees(int n, vector<pair<int, int>>& edges) {
+		//先找叶子节点，再按次序删掉，反复（逆向BFS）
+		vector<int> res;
+		if (!n) {
+			return res;
+		}
+		map<int, int>nodes;
+		for (auto s : edges) {
+			auto t = nodes.find(s.first);
+			if (t == nodes.end()) {
+				nodes.insert(pair<int, int>(s.first, 1));
+			}
+			else {
+				++t->second;
+			}
+			t = nodes.find(s.second);
+			if (t == nodes.end()) {
+				nodes.insert(pair<int, int>(s.second, 1));
+			}
+			else {
+				++t->second;
+			}
+		}
+		vector<int>outs;
+		for (auto r : nodes) {
+			if (r.second == 1) {
+				outs.push_back(r.first);
+			}
+		}
+		while (n > 2) {
+			n -= outs.size();
+			for (auto y : outs) {
+				
+			}
+		}
+	}
+	int nthSuperUglyNumber(int n, vector<int>& primes) {
+		vector<int>res(n, 1);
+		int size = primes.size();
+		if (n == 1) {
+			return 1;
+		}
+		vector<int>points(size, 0);
+		vector<int>tempv(size, 0);
+		int minv = INT_MAX;
+		int minl = 0;
+		int temp;
+		for (int i = 1; i < n; ++i) {
+			minv = INT_MAX;
+			for (int j = 0; j < size; ++j) {
+				temp = res[points[j]] * primes[j];
+				tempv[j] = temp;
+				if (temp <= minv) {
+					minv = temp;
+					minl = j;
+				}
+			}
+			res[i] = minv;
+			for (int k = 0; k < size;++k) {
+				if (tempv[k] == minv) {
+					points[k]++;
+				}
+			}
+		}
+		return res[n - 1];
+	}
+	int maxProduct(vector<string>& words) {
+		int maxl = 0;
+		if (!words.size()) {
+			return maxl;
+		}
+		vector<int> hash(words.size(), 0);  //32位对应26个英文字母
+		for (int i = 0; i < words.size(); ++i) {
+			for (int j = 0; j < words[i].length(); ++j) {
+				int shift = words[i][j] - 'a';
+				hash[i] = hash[i] | (1 << shift);
+			}
+		}
+		for (int i = 0; i < hash.size(); ++i) {
+			for (int j = i + 1; j < hash.size(); ++j) {
+				int temp = hash[i] & hash[j];
+				if (temp == 0) {
+					maxl = max(maxl, int(words[i].length()*words[j].length()));
+				}
+			}
+		}
+		return maxl;
+	}
+	
+	int coinChange(vector<int>& coins, int amount) {
+		if (!amount) {
+			return 0;
+		}
+		vector<int>dp(amount + 1, amount + 1);
+		dp[0] = 0;
+		for (int i = 1; i <= amount; ++i) {
+			for (auto j : coins) {
+				if (i - j >= 0) {
+					dp[i] = min(dp[i], dp[i - j] + 1);
+				}
+			}
+		}
+		return (dp[amount] == amount + 1) ? -1 : dp[amount];
+	}
 };
 int main() {
-	map<char, int>tmp;
-	tmp.insert(pair<char, int>('a', 1));
-	auto it = tmp.find('a');
-	it->second++;
+	Solution solu;
+	//int solu313 = solu.nthSuperUglyNumber(12, vector<int>{2, 7, 13, 19});
+	//int solu318 = solu.maxProduct(vector<string>{"abcw", "baz", "foo", "bar", "xtfn", "abcdef"});
+	int solu322 = solu.coinChange(vector<int>{186, 419, 83, 408}, 6249);
 	int k = 0;
 }
