@@ -167,8 +167,7 @@ public:
 		}
 		return maxl;
 	}
-	
-	int coinChange(vector<int>& coins, int amount) {
+	int coinChangedp(vector<int>& coins, int amount) {
 		if (!amount) {
 			return 0;
 		}
@@ -182,6 +181,28 @@ public:
 			}
 		}
 		return (dp[amount] == amount + 1) ? -1 : dp[amount];
+	}
+	map<int, int>dpmap;
+	int coinChange(vector<int>& coins, int amount) {
+		auto it = dpmap.find(amount);
+		if (it != dpmap.end()) {
+			return it->second;
+		}
+		if (!amount) {
+			return 0;
+		}
+		int count = amount + 1;
+		for (int i = 0; i < coins.size(); ++i) {
+			if (coins[i] <= amount) {
+				int temp = coinChange(coins, amount - coins[i]);
+				if (temp >= 0) {
+					count = min(count, 1 + temp);
+				}
+			}
+		}
+		int ret = (count == amount + 1) ? -1 : count;
+		dpmap.insert(pair<int, int>(amount, ret));
+		return ret;
 	}
 };
 int main() {
