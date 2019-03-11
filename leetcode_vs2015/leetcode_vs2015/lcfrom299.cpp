@@ -3,6 +3,11 @@
 #include<string>
 #include<algorithm>
 #include<vector>
+struct ListNode {
+	int val;
+	ListNode *next;
+	ListNode(int x) : val(x), next(NULL) {}
+};
 using namespace std;
 class Solution {
 public:
@@ -204,11 +209,85 @@ public:
 		dpmap.insert(pair<int, int>(amount, ret));
 		return ret;
 	}
+	void wiggleSort(vector<int>& nums) {
+		//注意要反着排
+		sort(nums.begin(), nums.end());
+		vector<int>temp(nums.size(), 0);
+		int shift;
+		if (nums.size() % 2 == 0) {
+			for (int i = 0; i < nums.size(); ++i) {
+				if (i < nums.size() / 2) {
+					temp[nums.size() - 2 - (i << 1)] = nums[i];
+				}
+				else {
+					shift = (i - nums.size() / 2) << 1;
+					temp[nums.size() - (shift + 1)] = nums[i];
+				}
+			}
+		}
+		else {
+			for (int i = 0; i < nums.size(); ++i) {
+				if (i <= nums.size() / 2) {
+					temp[nums.size() - 1 - (i << 1)] = nums[i];
+				}
+				else {
+					shift = (i - nums.size() / 2 - 1) << 1;
+					temp[nums.size() - 1 - (shift + 1)] = nums[i];
+				}
+			}
+		}
+		nums = temp;
+		return;
+	}
+	bool isPowerOfThree(int n) {
+		//你能不使用循环或者递归来完成本题吗？
+		if (n == 1) {
+			return true;
+		}
+		if (n < 2 && n%2==0) {
+			return false;
+		}
+		while (n > 1) {
+			if (n % 3 != 0) {
+				return false;
+			}
+			n /= 3;
+		}
+		return true;
+	}
+	ListNode* oddEvenList(ListNode* head) {
+		if (!head) {
+			return head;
+		}
+		ListNode *work = head;
+		ListNode *second = head->next;
+		if (!second) {
+			return head;
+		}
+		ListNode *work2 = second;
+		while (work&&work2) {
+			if (work2->next) {
+				work->next = work2->next;
+				work2->next = work->next->next;
+				work = work->next;
+				work2 = work2->next;
+			}
+			else {
+				work->next = second;
+				return head;
+			}
+		}
+		if (!work2) {
+			work->next = second;
+		}
+		return head;
+	}
 };
 int main() {
 	Solution solu;
 	//int solu313 = solu.nthSuperUglyNumber(12, vector<int>{2, 7, 13, 19});
 	//int solu318 = solu.maxProduct(vector<string>{"abcw", "baz", "foo", "bar", "xtfn", "abcdef"});
-	int solu322 = solu.coinChange(vector<int>{186, 419, 83, 408}, 6249);
+	//int solu322 = solu.coinChange(vector<int>{186, 419, 83, 408}, 6249);
+	solu.wiggleSort(vector<int>{4, 5, 5, 6});
 	int k = 0;
 }
