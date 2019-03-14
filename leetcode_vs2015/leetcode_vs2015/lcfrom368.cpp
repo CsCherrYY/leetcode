@@ -106,6 +106,35 @@ public:
 		dp[make_pair(left, right)] = maxv;
 		return maxv;
 	}
+	int wiggleMaxLength(vector<int>& nums) {
+		if (nums.size() <= 2) {
+			return nums.size();
+		}
+		int maxup = 1;
+		int maxdown = 1;
+		for (int i = 1; i < nums.size(); ++i) {
+			if (nums[i] > nums[i - 1]) {
+				maxup = maxdown + 1;
+			}
+			else if (nums[i] < nums[i - 1]) {
+				maxdown = maxup + 1;
+			}
+		}
+		return max(maxup, maxdown);
+	}
+	int combinationSum4(vector<int>& nums, int target) {
+		//给定一个由正整数组成且不存在重复数字的数组，找出和为给定目标正整数的组合的个数。
+		vector<int>dp(target+1, 0);
+		dp[0] = 1;
+		for (int i = 1; i <= target; ++i) {
+			for (int j = 0; j < nums.size(); ++j) {
+				if (i - nums[j] >= 0) {
+					dp[i] += dp[i - nums[j]];
+				}
+			}
+		}
+		return dp[target];
+	}
 };
 int main() {
 	Solution solu;
