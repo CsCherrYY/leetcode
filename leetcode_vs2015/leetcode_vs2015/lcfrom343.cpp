@@ -87,7 +87,54 @@ public:
 		}
 		return res;
 	}
+	int countNumbersWithUniqueDigits(int n) {
+		//给定一个非负整数 n，计算各位数字都不同的数字 x 的个数，其中 0 ≤ x < 10^n。
+		if (n == 0) {
+			return 1;
+		}
+		if (n == 1) {
+			return 10;
+		}
+		if (n > 10) {
+			return 0;
+		}
+		int res = 9;
+		int count = 1;
+		for (int i = 9; i >= 0; --i) {
+			res *= i;
+			count++;
+			if (count == n) {
+				break;
+			}
+		}
+		return res + countNumbersWithUniqueDigits(n - 1);
+	}
+	bool isPerfectSquare(int num) {
+		if (num == 1) {
+			return true;
+		}
+		int l = 0;
+		int r = num;
+		int mid;
+		long long temp;
+		while (l <= r) {
+			mid = l + (r - l) / 2;
+			temp = mid*mid;
+			if (temp == num) {
+				return true;
+			}
+			else if (temp > num) {
+				r = mid - 1;
+			}
+			else {
+				l = mid + 1;
+			}
+		}
+		return false;
+	}
 };
 int main() {
+	Solution solu;
+	bool solu367 = solu.isPerfectSquare(16);
 	return 0;
 }
