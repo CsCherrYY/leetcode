@@ -1,6 +1,7 @@
 #include<iostream>
 #include<algorithm>
 #include<vector>
+#include<map>
 #include<queue>
 using namespace std;
 struct comp {
@@ -81,12 +82,35 @@ public:
 		return res;
 	}
 	int getMoneyAmount(int n) {
-
+		map<pair<int, int>, int>dp;
+		int ret = getMoneyAmounttrace(1, n, dp);
+		return ret;
+	}
+	int getMoneyAmounttrace(int left, int right, map<pair<int, int>, int>&dp) {
+		if (right <= left) {
+			return 0;
+		}
+		if (right - left == 1) {
+			return left;
+		}
+		if (right - left == 2) {
+			return (right + left) / 2;
+		}
+		if (auto ret = dp[make_pair(left, right)]) {
+			return ret;
+		}
+		int maxv = (left + right)*(right - left) / 2;
+		for (int i = left; i <= right; ++i) {
+			maxv = min(maxv, i + max(getMoneyAmounttrace(left, i - 1, dp),getMoneyAmounttrace(i + 1, right, dp)));
+		}
+		dp[make_pair(left, right)] = maxv;
+		return maxv;
 	}
 };
 int main() {
 	Solution solu;
-	vector<int>solu368 = solu.largestDivisibleSubset(vector<int>{4, 8, 10, 240});
-	int solu371 = solu.getSum(-1, 1);
+	//vector<int>solu368 = solu.largestDivisibleSubset(vector<int>{4, 8, 10, 240});
+	//int solu371 = solu.getSum(-1, 1);
+	int solu375 = solu.getMoneyAmount(10);
 	return 0;
 }
