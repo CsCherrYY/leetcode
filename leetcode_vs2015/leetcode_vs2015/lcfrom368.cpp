@@ -9,6 +9,11 @@ struct comp {
 		return a.second > b.second;
 	}
 };
+struct comp1 {
+	bool operator ()(pair<pair<int, int>, int>a, pair<pair<int, int>, int>b) {
+		return a.second > b.second;
+	}
+};
 class Solution {
 public:
 	vector<int> largestDivisibleSubset(vector<int>& nums) {
@@ -134,6 +139,23 @@ public:
 			}
 		}
 		return dp[target];
+	}
+	int kthSmallest(vector<vector<int>>& matrix, int k) {
+		int n = matrix.size();
+		priority_queue<pair<pair<int, int>, int>, vector<pair<pair<int, int>, int> >, comp1> pq;
+		for (int i = 0; i < n; ++i) {
+			pq.push(make_pair(make_pair(0, i), matrix[0][i]));
+		}
+		auto temp = pq.top();
+		for (int i = 0; i < k; ++i) {
+			temp = pq.top();
+			pq.pop();
+			if (temp.first.first == n - 1) {
+				continue;
+			}
+			pq.push(make_pair(make_pair(temp.first.first + 1, temp.first.second), matrix[temp.first.first + 1][temp.first.second]));
+		}
+		return temp.second;
 	}
 };
 int main() {
