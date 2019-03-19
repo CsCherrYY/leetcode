@@ -1,7 +1,9 @@
 #include<iostream>
 #include<algorithm>
 #include<vector>
+#include<set>
 #include<map>
+#include<unordered_map>
 #include<queue>
 using namespace std;
 struct comp {
@@ -157,11 +159,79 @@ public:
 		}
 		return temp.second;
 	}
+	bool canConstruct(string ransomNote, string magazine) {
+		map<char, int>hash;
+		for (auto ch : magazine) {
+			hash[ch]++;
+		}
+		for (auto ch : ransomNote) {
+			hash[ch]--;
+			if (hash[ch] < 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+	vector<int> lexicalOrder(int n) {
+		vector<int>res;
+		int now = 1;
+		for (int i = 0; i < n; ++i) {
+			res.push_back(now);
+			if (now * 10 <= n) {
+				now = now * 10;
+			}
+			else {
+				if (now >= n) {
+					now /= 10;
+				}
+				now++;
+				while (now % 10 == 0) {
+					now /= 10;
+				}
+			}
+		}
+		return res;
+	}
+	int firstUniqChar(string s) {
+		if (!s.length()) {
+			return -1;
+		}
+		map<int, int>hash;
+		for (int i = 0; i < s.length(); ++i) {
+			if (hash[s[i]]) {
+				hash[s[i]] = s.length() + 1;
+			}
+			else {
+				hash[s[i]] = i + 1;
+			}
+		}
+		int minv = s.length();
+		for (auto it : hash) {
+			if (it.second - 1 < minv) {
+				minv = it.second - 1;
+			}
+		}
+		return (minv == s.length() + 1) ? -1 : minv;
+	}
+	char findTheDifference(string s, string t) {
+		map<char, int>sets;
+		for (auto ch : s) {
+			sets[ch]++;
+		}
+		for (auto ch : t) {
+			sets[ch]--;
+			if (sets[ch] < 0) {
+				return ch;
+			}
+		}
+		return '0';
+	}
 };
 int main() {
 	Solution solu;
 	//vector<int>solu368 = solu.largestDivisibleSubset(vector<int>{4, 8, 10, 240});
 	//int solu371 = solu.getSum(-1, 1);
-	int solu375 = solu.getMoneyAmount(10);
+	//int solu375 = solu.getMoneyAmount(10);
+	int solu387 = solu.firstUniqChar("cc");
 	return 0;
 }
