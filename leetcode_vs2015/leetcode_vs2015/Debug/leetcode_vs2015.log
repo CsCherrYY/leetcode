@@ -1,10 +1,8 @@
-﻿  lcfrom368.cpp
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom368.cpp(33): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom368.cpp(36): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom368.cpp(79): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom368.cpp(80): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom368.cpp(122): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom368.cpp(137): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\cs\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom368.cpp(200): warning C4018: “<”: 有符号/无符号不匹配
-  leetcode_vs2015.vcxproj -> C:\Users\CS\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.exe
-  leetcode_vs2015.vcxproj -> C:\Users\CS\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.pdb (Full PDB)
+﻿  sort.cpp
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\sort.cpp(14): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\sort.cpp(16): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\sort.cpp(31): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\sort.cpp(46): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\sort.cpp(107): warning C4018: “<”: 有符号/无符号不匹配
+  leetcode_vs2015.vcxproj -> C:\Users\12225\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.exe
+  leetcode_vs2015.vcxproj -> C:\Users\12225\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.pdb (Full PDB)
