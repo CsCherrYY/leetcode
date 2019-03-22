@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sort.cpp">
+    <ClCompile Include="lcfrom343.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
