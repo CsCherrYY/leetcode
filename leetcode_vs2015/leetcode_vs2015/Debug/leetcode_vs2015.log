@@ -1,20 +1,9 @@
-﻿  lcfrom390.cpp
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(33): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(56): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(139): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(153): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(162): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(165): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(168): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(192): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(196): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(200): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(201): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(210): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(211): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(220): warning C4018: “>=”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(223): warning C4018: “>=”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(231): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lcfrom390.cpp(239): warning C4018: “<”: 有符号/无符号不匹配
+﻿  lc_hards.cpp
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards.cpp(18): warning C4018: “<=”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards.cpp(21): warning C4018: “<=”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards.cpp(25): warning C4018: “<=”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards.cpp(26): warning C4018: “<=”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards.cpp(45): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards.cpp(66): warning C4018: “<”: 有符号/无符号不匹配
   leetcode_vs2015.vcxproj -> C:\Users\12225\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.exe
   leetcode_vs2015.vcxproj -> C:\Users\12225\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.pdb (Full PDB)
