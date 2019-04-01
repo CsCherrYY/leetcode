@@ -1,7 +1,14 @@
 #include<iostream>
 #include<stack>
 #include<algorithm>
+#include<unordered_map>
 #include<vector>
+struct TreeNode {
+	int val;
+	TreeNode *left;
+	TreeNode *right;
+	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
 using namespace std;
 class Solution {
 public:
@@ -78,6 +85,92 @@ public:
 			}
 		}
 		return ret;
+	}
+	int maxv = INT_MIN;
+	int maxPathSum(TreeNode* root) {
+		getmaxv(root);
+		return maxv;
+	}
+	int getmaxv(TreeNode* root) {
+		if (!root) {
+			return 0;
+		}
+		int leftv = getmaxv(root->left);
+		int rightv = getmaxv(root->right);  
+		int case1 = root->val;
+		int case2 = root->val + leftv;
+		int case3 = root->val + rightv;
+		int case4 = root->val + leftv + rightv;
+		//第4种是不和上面的节点连接的
+		int max_temp = max(max(case1, case2), max(case3, case4));
+		maxv = max(maxv, max_temp);
+		return max(max(case1, case2), max(case2, case3));
+	}
+	bool ishw(string s) {
+		if (!s.length()) {
+			return true;
+		}
+		int i = 0;
+		int j = s.length() - 1;
+		while (i < j) {
+			if (s[i] != s[j]) {
+				return false;
+			}
+			i++;
+			j--;
+		}
+		return true;
+	}
+	int minCut(string s) {
+		if (!s.length()) {
+			return 0;
+		}
+		string temp = s;
+		reverse(s.begin(), s.end());
+		if (s == temp) {
+			return 0;
+		}
+		for (int i = 0; i < s.length(); i++) {
+			string temp1 = s.substr(0, i);
+			string temp2 = s.substr(i);
+			if (ishw(temp1) && ishw(temp2)) {
+				return 1;
+			}
+		}
+		vector<int>dp(s.length() + 1, 0);
+		for (int i = 0; i < dp.size(); i++) {
+			dp[i] = i;
+		}
+		dp[0] = -1;
+		for (int i = 0; i < dp.size() - 1; i++) {
+			for (int j = 0; j <= i; j++) {
+				if (ishw(s.substr(j, i - j + 1))) {
+					dp[i + 1] = min(dp[i + 1], dp[j] + 1);
+				}
+			}
+		}
+		return dp[s.length()];
+	}
+	vector<string> wordBreak(string s, vector<string>& wordDict) {
+		vector<string> ret;
+		string ans;
+		unordered_map<string, string>dp;
+		search(s, wordDict, ret, ans, dp);
+		return ret;
+	}
+	void search(string s, vector<string>& wordDict, vector<string> &ret,string ans, unordered_map<string, string>&dp) {
+		if (!s.length()) {
+			ret.push_back(ans);
+		}
+		for (auto it : wordDict) {
+			if (it == s.substr(0, it.length())) {
+				string temp = ans + it;
+				if (s.length() != it.length()) {
+					temp += " ";
+				}
+				search(s.substr(it.length()), wordDict, ret, temp);
+			}
+		}
 	}
 };
 int main() {

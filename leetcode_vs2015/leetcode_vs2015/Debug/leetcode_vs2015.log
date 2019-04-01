@@ -1,9 +1,3 @@
-﻿  lc_hards.cpp
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards.cpp(18): warning C4018: “<=”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards.cpp(21): warning C4018: “<=”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards.cpp(25): warning C4018: “<=”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards.cpp(26): warning C4018: “<=”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards.cpp(45): warning C4018: “<”: 有符号/无符号不匹配
-c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards.cpp(66): warning C4018: “<”: 有符号/无符号不匹配
+﻿  lcfrom452.cpp
   leetcode_vs2015.vcxproj -> C:\Users\12225\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.exe
   leetcode_vs2015.vcxproj -> C:\Users\12225\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.pdb (Full PDB)
