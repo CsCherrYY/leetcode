@@ -217,6 +217,12 @@ public:
 		}
 		return true;
 	}
+	int count(vector<vector<int>>& board, int i, int j) {
+		if(i)
+	}
+	void gameOfLife(vector<vector<int>>& board) {
+
+	}
 };
 int main() {
 	Solution solu;

@@ -3,13 +3,75 @@
 #include<algorithm>
 #include<unordered_map>
 #include<vector>
+#include<string>
+#include<queue>
+#include<list>
+using namespace std;
 struct TreeNode {
 	int val;
 	TreeNode *left;
 	TreeNode *right;
 	TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
-using namespace std;
+class max_queue {  //做一个能取最大值的队列
+public:
+	queue<int>q;
+	queue<int>maxq;
+	max_queue() {}
+	void push(int i) {
+
+	}
+};
+class LRUCache {
+private:
+	int size;
+	list<pair<int, int>> lis;
+	unordered_map<int, list<pair<int, int>>::iterator>maps;
+public:
+	LRUCache(int capacity) {
+		size = capacity;
+	}
+
+	int get(int key) {
+		if (maps.find(key) != maps.end()) {
+			int value = maps[key]->second;
+			lis.splice(lis.begin(), lis ,maps[key]);
+			return value;
+		}
+		return -1;
+	}
+
+	void put(int key, int value) {
+		if (maps.find(key) != maps.end()) {
+			maps[key]->second = value;
+			get(key);
+		}
+		else {
+			lis.emplace_front(key, value);
+			maps[key] = lis.begin();
+			if (lis.size() > size) {
+				maps.erase(lis.back().first);
+				lis.pop_back();
+			}
+		}
+	}
+};
+class TrieNode{
+public:
+	bool isword;
+	vector<TrieNode*>childs;
+	TrieNode() {
+		isword = false;
+		childs = vector<TrieNode*>(26, nullptr);
+	}
+	~TrieNode() {
+		for (auto ch : childs) {
+			if (ch) {
+				delete ch;
+			}
+		}
+	}
+};
 class Solution {
 public:
 	int minDistance(string word1, string word2) {
@@ -168,12 +230,271 @@ public:
 				if (s.length() != it.length()) {
 					temp += " ";
 				}
-				search(s.substr(it.length()), wordDict, ret, temp);
+				search(s.substr(it.length()), wordDict, ret, temp,dp);
 			}
 		}
+	}
+	int findMin(vector<int>& nums) {
+		int low = 0;
+		int high = nums.size() - 1;
+		while (low < high) {
+			int mid = low + (high - low) / 2;
+			if (nums[mid] > nums[high]) {
+				low = mid + 1;
+			}
+			else if (nums[mid] < nums[high]) {
+				high = mid;
+			}
+			else {
+				high--;
+			}
+		}
+		return nums[low];
+	}
+	int maximumGap(vector<int>& nums) {
+		if (nums.size() < 2) {
+			return 0;
+		}
+		int maxv = nums[0];
+		int minv = nums[0];
+		for (int i = 1; i < nums.size(); i++) {
+			if (nums[i] < minv) {
+				minv = nums[i];
+			}
+			if (nums[i] > maxv) {
+				maxv = nums[i];
+			}
+		}
+		int buckets_diff = (maxv - minv) / (nums.size() - 1);
+		if (buckets_diff*(nums.size() - 1) < (maxv - minv)) {
+			buckets_diff += 1;
+		}
+		if (!buckets_diff) {
+			return 0;
+		}
+		//在桶排序的情况下最大间隔只会出现在两个桶之间
+		vector<bool>flag(nums.size(), false);
+		vector<vector<int>>bucket(nums.size(), vector<int>(2, maxv + 1));  //minv maxv
+		for (int i = 0; i < bucket.size(); i++) {
+			bucket[i][1] = minv - 1;
+		}
+		for (int i = 0; i < nums.size(); i++) {
+			int number = (nums[i] - minv) / buckets_diff;
+			if (nums[i] < bucket[number][0]) {
+				bucket[number][0] = nums[i];
+				flag[number] = true;
+			}
+			if (nums[i] > bucket[number][1]) {
+				bucket[number][1] = nums[i];
+				flag[number] = true;
+			}
+		}
+		int ret = 0;
+		int last_flag = 0;
+		for (int i = 1; i < bucket.size(); i++) {
+			if (flag[i]) {
+				ret = max(ret, bucket[i][0] - bucket[last_flag][1]);
+				last_flag = i;
+			}
+		}
+		return ret;
+	}
+	int calculateMinimumHP(vector<vector<int>>& dungeon) {
+		if (!dungeon.size() || !dungeon[0].size()) {
+			return 0;
+		}
+		int rows = dungeon.size();
+		int columns = dungeon[0].size();
+		vector<vector<int>>dp(rows, vector<int>(columns, 1)); //dp[i][j] represents the min hp of (i,j) back to begin
+		//to solve the minv of 0,0
+		int temp;
+		for (int i = rows - 1; i >= 0; i--) {
+			for (int j = columns - 1; j >= 0; j--) {
+				if (i == rows - 1 && j == columns - 1) {
+					temp = 1 - dungeon[i][j];
+					dp[i][j] = (temp) < 1 ? 1 : temp;
+				}
+				else if (i != rows - 1 && j != columns - 1) {
+					temp = min(dp[i + 1][j], dp[i][j + 1]) - dungeon[i][j];
+					dp[i][j] = (temp) < 1 ? 1 : temp;
+				}
+				else if (i == rows - 1) {
+					temp = dp[i][j + 1] - dungeon[i][j];
+					dp[i][j] = (temp) < 1 ? 1 : temp;
+				}
+				else {
+					temp = dp[i + 1][j] - dungeon[i][j];
+					dp[i][j] = (temp) < 1 ? 1 : temp;
+				}
+			}
+		}
+		return dp[0][0];
+	}
+	bool canFinish(int numCourses, vector<pair<int, int>>& prerequisites) {
+		//拓扑排序
+		vector<int>course(numCourses, 0);
+		queue<int>tp;
+		int finish = 0;
+		for (auto pre : prerequisites) {
+			course[pre.first]++;           //[1,0] 0->1
+		}
+		for (int i = 0; i < course.size(); i++) {
+			if (course[i] == 0) {
+				tp.push(i);
+			}
+		}
+		while (!tp.empty()) {
+			for (auto pre : prerequisites) {
+				if (pre.second == tp.front()) {
+					course[pre.first]--;
+					if (!course[pre.first]) {
+						tp.push(pre.first);
+					}
+				}
+			}
+			tp.pop();
+			finish++;
+		}
+		if (finish == numCourses) {
+			return true;
+		}
+		return false;
+	}
+	vector<int> findOrder(int numCourses, vector<pair<int, int>>& prerequisites) {
+		vector<int>ret;
+		vector<int>course(numCourses, 0);
+		queue<int>tp;
+		int finish = 0;
+		for (auto pre : prerequisites) {
+			course[pre.first]++;           //[1,0] 0->1
+		}
+		for (int i = 0; i < course.size(); i++) {
+			if (course[i] == 0) {
+				tp.push(i);
+			}
+		}
+		while (!tp.empty()) {
+			for (auto pre : prerequisites) {
+				if (pre.second == tp.front()) {
+					course[pre.first]--;
+					if (!course[pre.first]) {
+						tp.push(pre.first);
+					}
+				}
+			}
+			ret.push_back(tp.front());
+			tp.pop();
+			finish++;
+		}
+		if (finish == numCourses) {
+			return ret;
+		}
+		ret.clear();
+		return ret;
+	}
+	TrieNode*Trieroot = new TrieNode();
+	void addword(string word, TrieNode*root) {
+		TrieNode*work = root;
+		for (auto ch : word) {
+			if (!work->childs[ch - 'a']) {
+				work->childs[ch - 'a'] = new TrieNode();
+			}
+			work = work->childs[ch - 'a'];
+		}
+		work->isword = true;
+		return;
+	}
+	vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
+		vector<string>ret;
+		if (!board.size() || !board[0].size()) {
+			return ret;
+		}
+		for (auto word : words) {
+			addword(word, Trieroot);
+		}
+		vector<vector<bool>>flag(board.size(), vector<bool>(board[0].size(), false));
+		for (int i = 0; i < board.size(); i++) {
+			for (int j = 0; j < board[0].size(); j++) {
+				if (Trieroot->childs[board[i][j] - 'a']) {
+					flag[i][j] = true;
+					string res;
+					res += board[i][j];
+					DFS_word(board, flag, res, Trieroot->childs[board[i][j] - 'a'], i, j, ret);
+					flag[i][j] = false;
+				}
+			}
+		}
+		return ret;
+	}
+	void DFS_word(vector<vector<char>>& board, vector<vector<bool>>&flag, string res, TrieNode* work, int i, int j, vector<string>&ret) {
+		if (work->isword) {
+			ret.push_back(res);
+			work->isword = false;  //防止重复
+		}
+		if (i - 1 >= 0 && !flag[i - 1][j] && work->childs[board[i - 1][j] - 'a']) {
+			flag[i - 1][j] = true;
+			DFS_word(board, flag, res + board[i - 1][j], work->childs[board[i - 1][j] - 'a'], i - 1, j, ret);
+			flag[i - 1][j] = false;
+		}
+		if (i + 1 <= board.size() - 1 && !flag[i + 1][j] && work->childs[board[i + 1][j] - 'a']) {
+			flag[i + 1][j] = true;
+			DFS_word(board, flag, res + board[i + 1][j], work->childs[board[i + 1][j] - 'a'], i + 1, j, ret);
+			flag[i + 1][j] = false;
+		}
+		if (j - 1 >= 0 && !flag[i][j - 1] && work->childs[board[i][j - 1] - 'a']) {
+			flag[i][j - 1] = true;
+			DFS_word(board, flag, res + board[i][j - 1], work->childs[board[i][j - 1] - 'a'], i, j - 1, ret);
+			flag[i][j - 1] = false;
+		}
+		if (j + 1 <= board[0].size() - 1 && !flag[i][j + 1] && work->childs[board[i][j + 1] - 'a']) {
+			flag[i][j + 1] = true;
+			DFS_word(board, flag, res + board[i][j + 1], work->childs[board[i][j + 1] - 'a'], i, j + 1, ret);
+			flag[i][j + 1] = false;
+		}
+		return;
+	}
+	vector<int> maxSlidingWindow(vector<int>& nums, int k) {
+		if (!nums.size()) {
+			return nums;
+		}
+		vector<int>ret;
+		for (int i = 0; i < k; i++) {
+			
+		}
+		return ret;
+	}
+	void searchop(vector<string>&res, string num, int target, long long val,long long last,string ans) {
+		if (!num.size()) {
+			if (val == target) {
+				res.push_back(ans);
+			}
+			return;
+		}
+		for (int i = 1; i <= num.size(); i++) {
+			string current = num.substr(0, i);
+			if (current.size() > 1 && current[0] == '0') {
+				return;
+			}
+			string next = num.substr(i);
+			if (!ans.length()) {
+				searchop(res, next, target, stoll(current), stoll(current), current);
+			}
+			else {
+				searchop(res, next, target, stoll(current) + val, stoll(current), ans + "+" + current);
+				searchop(res, next, target, -stoll(current) + val, -stoll(current), ans + "-" + current);
+				searchop(res, next, target, (val - last) + (last*stoll(current)), (last*stoll(current)), ans + "*" + current);
+			}
+		}
+	}
+	vector<string> addOperators(string num, int target) {
+		vector<string>res;
+		searchop(res, num, target, 0, 0,  "");
+		return res;
 	}
 };
 int main() {
 	Solution solu;
+	vector<string> ret = solu.addOperators("105", 5);
 	return 0;
+	
 }

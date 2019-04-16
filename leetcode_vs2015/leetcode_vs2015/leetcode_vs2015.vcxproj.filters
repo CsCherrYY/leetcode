@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lc_hards.cpp">
+    <ClCompile Include="lcfrom263.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
