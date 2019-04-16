@@ -2,6 +2,7 @@
 #include<stack>
 #include<algorithm>
 #include<unordered_map>
+#include<unordered_set>
 #include<vector>
 #include<string>
 #include<queue>
@@ -490,6 +491,77 @@ public:
 		vector<string>res;
 		searchop(res, num, target, 0, 0,  "");
 		return res;
+	}
+	bool isvalidkh(string s) {
+		int cnt = 0;
+		for (auto it : s) {
+			if (it == '(') {
+				cnt++;
+			}
+			else if (it == ')') {
+				if (cnt) {
+					cnt--;
+				}
+				else {
+					return false;
+				}
+			}
+		}
+		if (cnt) {
+			return false;
+		}
+		return true;
+	}
+	void delkh(unordered_set<string> &res, int left, int right, string s, int offset) {
+		if (!left && !right) {
+			if (isvalidkh(s)) {
+				//res.push_back(s);
+				res.insert(s);
+			}
+			return;
+		}
+		if (offset == s.length()) {
+			return;
+		}
+		if (left) {
+			if (s[offset] == '(') {
+				string temp = s.substr(0, offset) + ((offset == s.length() - 1) ? "" : s.substr(offset + 1));
+				delkh(res, left - 1, right, temp, offset);
+			}
+		}
+		if (right) {
+			if (s[offset] == ')') {
+				string temp = s.substr(0, offset) + ((offset == s.length() - 1) ? "" : s.substr(offset + 1));
+				delkh(res, left, right - 1, temp, offset);
+			}
+		}
+		delkh(res, left, right, s, offset + 1);
+	}
+	vector<string> removeInvalidParentheses(string s) {
+		//先计算出需要remove的括号的数量左和右，再递归
+		int left = 0;
+		int right = 0;
+		for (int i = 0; i < s.length(); i++) {
+			if (s[i] == '(') {
+				left++;
+			}
+			else if (s[i] == ')') {
+				if (left) {
+					left--;
+				}
+				else {
+					right++;
+				}
+			}
+		}
+		vector<string> res;
+		unordered_set<string>res_set;
+		delkh(res_set, left, right, s, 0);
+		res.assign(res_set.begin(), res_set.end());
+		return res;
+	}
+	vector<int> findMinHeightTrees(int n, vector<pair<int, int>>& edges) {
+
 	}
 };
 int main() {
