@@ -561,12 +561,48 @@ public:
 		return res;
 	}
 	vector<int> findMinHeightTrees(int n, vector<pair<int, int>>& edges) {
-
+		vector<vector<int>>conns(n, vector<int>{});
+		vector<int>conn_nums(n, 0);
+		unordered_set<int>used;
+		vector<int> res;
+		for (auto it : edges) {
+			conns[it.first].push_back(it.second);
+			conns[it.second].push_back(it.first);
+			conn_nums[it.first]++;
+			conn_nums[it.second]++;
+		}
+		int least = n;
+		int height = 0;
+		queue<int>outs;
+		while (least > 2) {
+			for (int i = 0; i < n; i++) {
+				if (conn_nums[i] == 1) {
+					outs.push(i);
+				}
+			}
+			while (!outs.empty()) {
+				for (auto it : conns[outs.front()]) {
+					conn_nums[it]--;
+				}
+				used.insert(outs.front());
+				conn_nums[outs.front()] = 0;
+				outs.pop();
+				least--;
+			}
+			height++;
+		}
+		int ii;
+		for (ii = 0; ii < n; ii++) {
+			if (used.find(ii) == used.end()) {
+				res.push_back(ii);
+			}
+		}
+		return res;
 	}
 };
 int main() {
 	Solution solu;
-	vector<string> ret = solu.addOperators("105", 5);
+	vector<int> ret = solu.findMinHeightTrees(8, vector<pair<int, int>>{ {0, 1}, { 1, 2 }, { 2, 3 }, { 0, 4 }, { 4, 5 }, { 4, 6 }, { 6, 7 }});
 	return 0;
 	
 }
