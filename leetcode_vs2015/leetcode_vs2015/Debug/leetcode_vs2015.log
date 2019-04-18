@@ -1,2 +1,13 @@
-﻿  leetcode_vs2015.vcxproj -> C:\Users\12225\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.exe
+﻿  lc_hards2.cpp
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards2.cpp(138): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards2.cpp(139): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards2.cpp(159): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards2.cpp(160): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards2.cpp(216): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards2.cpp(220): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards2.cpp(227): warning C4244: “return”: 从“__int64”转换到“int”，可能丢失数据
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards2.cpp(257): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards2.cpp(276): warning C4018: “<”: 有符号/无符号不匹配
+c:\users\12225\documents\github\leetcode\leetcode_vs2015\leetcode_vs2015\lc_hards2.cpp(298): warning C4018: “<”: 有符号/无符号不匹配
+  leetcode_vs2015.vcxproj -> C:\Users\12225\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.exe
   leetcode_vs2015.vcxproj -> C:\Users\12225\Documents\GitHub\leetcode\leetcode_vs2015\Debug\leetcode_vs2015.pdb (Full PDB)

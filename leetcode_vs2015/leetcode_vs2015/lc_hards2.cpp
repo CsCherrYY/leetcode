@@ -2,6 +2,7 @@
 #include<algorithm>
 #include<vector>
 #include<unordered_map>
+#include<stack>
 #include<unordered_set>
 using namespace std;
 class RandomizedSet {
@@ -45,6 +46,17 @@ public:
 	int getRandom() {
 		return nums[rand() % nums.size()];
 	}
+};
+struct Interval {
+	int start;
+	int end;
+	Interval() : start(0), end(0) {}
+	Interval(int s, int e) : start(s), end(e) {}
+};
+struct ListNode {
+	int val;
+	ListNode *next;
+	ListNode(int x) : val(x), next(NULL) {}
 };
 class Solution {
 public:
@@ -198,8 +210,106 @@ public:
 		}
 		return false;
 	}
+	int splitArray(vector<int>& nums, int m) {
+		vector<vector<long long>>dp(nums.size(), vector<long long>(m, INT_MAX));
+		long long sum = 0;
+		for (int i = 0; i < nums.size(); i++) {
+			sum += nums[i];
+			dp[i][0] = sum;
+		}
+		for (int i = 1; i < nums.size(); i++) {
+			for (int j = 1; j < min(m, i + 1); j++) {
+				for (int k = i - 1; k >= j - 1; k--) {
+					dp[i][j] = min(dp[i][j], max(dp[i][0] - dp[k][0], dp[k][j - 1]));
+				}
+			}
+		}
+		return dp[nums.size() - 1][m - 1];
+	}
+	string addStrings(string num1, string num2) {
+		int loc1 = num1.length() - 1;
+		int loc2 = num2.length() - 1;
+		int carry = 0;
+		string res;
+		while (loc1 >= 0 || loc2 >= 0 || carry) {
+			if (loc1 >= 0) {
+				carry += (num1[loc1] - '0');
+				loc1--;
+			}
+			if (loc2 >= 0) {
+				carry += (num2[loc2] - '0');
+				loc2--;
+			}
+			res.insert(res.begin(), '0' + (carry % 10));
+			carry /= 10;
+		}
+		return res;
+	}
+	static bool comp_inte(Interval a, Interval b) {
+		return a.start == b.start ? a.end < b.end : a.start < b.start;
+	}
+	int eraseOverlapIntervals(vector<Interval>& intervals) {
+		if (!intervals.size()) {
+			return 0;
+		}
+		sort(intervals.begin(), intervals.end(), comp_inte);
+		vector<int>dp(intervals.size(), 1);
+		for (int i = 0; i < intervals.size(); i++) {
+			for (int j = 0; j < i; j++) {
+				if (intervals[j].end <= intervals[i].start) {
+					dp[i] = max(dp[i], dp[j] + 1);
+				}
+			}
+		}
+		return intervals.size() - dp[intervals.size() - 1];
+	}
+	static bool comp_arrow(const pair<int, int>a,const pair<int, int>b) {
+		return a.second == b.second ? a.first < b.first : a.second < b.second;
+	}
+	int findMinArrowShots(vector<pair<int, int>>& points) {
+		if (!points.size()) {
+			return 0;
+		}
+		sort(points.begin(), points.end(), comp_arrow);
+		int arrow = 0;
+		int last_arrow = 0;
+		for (int i = 0; i < points.size(); i++) {
+			if (i == 0) {
+				arrow++;
+				last_arrow = points[i].second;
+				continue;
+			}
+			if (points[i].first <= last_arrow) {
+				continue;
+			}
+			else {
+				arrow++;
+				last_arrow = points[i].second;
+			}
+		}
+		return arrow;
+	}
+	bool find132pattern(vector<int>& nums) {
+		stack<int>temp;
+		if (nums.size() < 3) {
+			return false;
+		}
+		int minv = nums[0];
+		for (int i = 0; i < nums.size(); i++) {
+			if (temp.size() >= 2 && nums[i]<temp.top() && nums[i]>minv) {
+				return true;
+			}
+			if (!temp.empty() && nums[i] > temp.top()) {
+				temp.push(nums[i]);
+			}
+			minv = min(minv, nums[i]);
+		}
+		return false;
+	}
 };
 int main() {
 	Solution solu;
-	int res = solu.maxSumSubmatrix(vector<vector<int>>{{1, 0, 1}, { 0, -2, 3 }},2);
+	//int res = solu.maxSumSubmatrix(vector<vector<int>>{{1, 0, 1}, { 0, -2, 3 }},2);
+	int res = solu.findMinArrowShots(vector<pair<int, int>>{ {10, 16}, { 2, 8 }, { 1, 6 }, { 7, 12 }});
+	bool j = solu.find132pattern(vector<int>{3, 1, 4, 2});
 }
