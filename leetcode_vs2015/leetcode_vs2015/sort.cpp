@@ -172,7 +172,7 @@ public:
 				if (nums[i] < nums[i * 2 + 1]) {
 					swap(nums[i], nums[i * 2 + 1]);
 				}
-				if ((i * 2 + 2<length)&&nums[i] < nums[i * 2 + 2]) {
+				if ((i * 2 + 2 < length) && nums[i] < nums[i * 2 + 2]) {
 					swap(nums[i], nums[i * 2 + 2]);
 				}
 			}
@@ -185,12 +185,14 @@ public:
 };
 int main() {
 	Solution solu;
-	vector<int>test = { 8,6,3,6,1,4,5,9,1,3,5,2,6,2,8,4 };
+	/*vector<int>test = { 8,6,3,6,1,4,5,9,1,3,5,2,6,2,8,4 };
 	vector<int>res_select = solu.simple_select_sort(test);
 	vector<int>res_bobble = solu.bobble_sort(test);
 	vector<int>res_insert = solu.insert_sort(test);
 	vector<int>res_merge = solu.merge_sort(test);
 	vector<int>res_quick = solu.quick_sort(test);
-	vector<int>res_heap = solu.heap_sort(test);
+	vector<int>res_heap = solu.heap_sort(test);*/
+
+	int k = 0;
 	return 0;
 }
